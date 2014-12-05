@@ -240,8 +240,10 @@ PIXI.CanvasGraphics.renderGraphicsMask = function(graphics, context)
         else if(data.type === PIXI.Graphics.CIRC)
         {
             // TODO - need to be Undefined!
+            var r = shape.radius > 0 ? shape.radius : 0;
+
             context.beginPath();
-            context.arc(shape.x, shape.y, shape.radius,0,2*Math.PI);
+            context.arc(shape.x, shape.y, r,0,2*Math.PI);
             context.closePath();
         }
         else if(data.type === PIXI.Graphics.ELIP)
