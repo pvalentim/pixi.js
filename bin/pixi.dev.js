@@ -3239,7 +3239,7 @@ PIXI.Text.prototype.updateText = function()
     this.canvas.width = ( width + this.context.lineWidth ) * this.resolution;
 
     //calculate text height
-    var lineHeight = fontProperties.lineHeight || fontProperties.fontSize + this.style.strokeThickness;
+    var lineHeight = this.style.lineHeight || fontProperties.fontSize + this.style.strokeThickness;
 
 
     var height = lineHeight * lines.length;
