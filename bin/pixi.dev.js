@@ -1,4 +1,15 @@
 /**
+ * @license
+ * pixi.js - v2.1.1
+ * Copyright (c) 2012-2014, Mat Groves
+ * http://goodboydigital.com/
+ *
+ * Compiled: 2015-02-26
+ *
+ * pixi.js is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+/**
  * @author Mat Groves http://matgroves.com/ @Doormat23
  */
 
@@ -3168,7 +3179,7 @@ PIXI.Text.prototype.setStyle = function(style)
     style.strokeThickness = style.strokeThickness || 0;
     style.wordWrap = style.wordWrap || false;
     style.wordWrapWidth = style.wordWrapWidth || 100;
-    
+
     style.dropShadow = style.dropShadow || false;
     style.dropShadowAngle = style.dropShadowAngle || Math.PI / 6;
     style.dropShadowDistance = style.dropShadowDistance || 4;
@@ -3226,10 +3237,11 @@ PIXI.Text.prototype.updateText = function()
     if(this.style.dropShadow)width += this.style.dropShadowDistance;
 
     this.canvas.width = ( width + this.context.lineWidth ) * this.resolution;
-    
+
     //calculate text height
-    var lineHeight = fontProperties.fontSize + this.style.strokeThickness;
- 
+    var lineHeight = fontProperties.lineHeight || fontProperties.fontSize + this.style.strokeThickness;
+
+
     var height = lineHeight * lines.length;
     if(this.style.dropShadow)height += this.style.dropShadowDistance;
 
@@ -3238,7 +3250,7 @@ PIXI.Text.prototype.updateText = function()
     this.context.scale( this.resolution, this.resolution);
 
     if(navigator.isCocoonJS) this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
-    
+
     this.context.font = this.style.font;
     this.context.strokeStyle = this.style.stroke;
     this.context.lineWidth = this.style.strokeThickness;
@@ -3280,7 +3292,7 @@ PIXI.Text.prototype.updateText = function()
 
     //set canvas text styles
     this.context.fillStyle = this.style.fill;
-    
+
     //draw lines line by line
     for (i = 0; i < lines.length; i++)
     {
@@ -3336,7 +3348,7 @@ PIXI.Text.prototype.updateTexture = function()
 * Renders the object using the WebGL renderer
 *
 * @method _renderWebGL
-* @param renderSession {RenderSession} 
+* @param renderSession {RenderSession}
 * @private
 */
 PIXI.Text.prototype._renderWebGL = function(renderSession)
@@ -3356,7 +3368,7 @@ PIXI.Text.prototype._renderWebGL = function(renderSession)
 * Renders the object using the Canvas renderer
 *
 * @method _renderCanvas
-* @param renderSession {RenderSession} 
+* @param renderSession {RenderSession}
 * @private
 */
 PIXI.Text.prototype._renderCanvas = function(renderSession)
@@ -3368,7 +3380,7 @@ PIXI.Text.prototype._renderCanvas = function(renderSession)
         this.updateText();
         this.dirty = false;
     }
-     
+
     PIXI.Sprite.prototype._renderCanvas.call(this, renderSession);
 };
 
@@ -3386,7 +3398,7 @@ PIXI.Text.prototype.determineFontProperties = function(fontStyle)
     if(!properties)
     {
         properties = {};
-        
+
         var canvas = PIXI.Text.fontPropertiesCanvas;
         var context = PIXI.Text.fontPropertiesContext;
 
@@ -18170,4 +18182,3 @@ Object.defineProperty(PIXI.RGBSplitFilter.prototype, 'blue', {
         root.PIXI = PIXI;
     }
 }).call(this);
-//# sourceMappingURL=pixi.dev.js.map
